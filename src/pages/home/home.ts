@@ -18,6 +18,7 @@ export class HomePage {
       buttons: ['Entendido']
     });
     alert.present();
+      
   }  
 
 }
