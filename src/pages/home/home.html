@@ -1,17 +1,24 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Krato App</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="dark" (click)="MostrarInfo()">
+        <ion-icon name="md-information-circle"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
+  <h2>Bienvenido a Krato</h2>
   <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
+    Esta es una aplicacion prototipo basada en la compra de medicinas. que incorpora las siguientes funcionalidades:
   </p>
+  <ul>
+      <li>Revisiones de ofertas semanales</li>
+      <li>Recordatorio de toma de medicamentos </li>
+  </ul>
   <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
+    Dichas funciones se implementaron usando complementos de Ionic 3 tales como <b>Cards-Image</b>, <b>Alerts</b>, <b>Local-Notifications</b>
   </p>
 </ion-content>
