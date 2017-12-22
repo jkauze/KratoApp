@@ -7,11 +7,24 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+
+
+<button ion-button block color="danger" (click)="Seleccionar()">Especificar medicamento</button>
+<button ion-button color="primary" (click)="Agregar()" >Agregar al recordador Kratox</button>
+
+
+    
+    <ion-list>
+  <ion-list-header><ion-icon name="md-alarm" ></ion-icon>Kratox te recordara </ion-list-header>
+  <ion-item ion-item *ngFor="let item of lista">
+        Te recordare <b> {{ item.titulo }} </b>
+      </ion-item>
+    </ion-list>
+    
+  <ion-fab bottom center>
+        <button ion-fab (click)="Recordarme()">
+            <ion-icon name="md-alarm"></ion-icon>
+        </button>
+  </ion-fab> 
 </ion-content>
+    
