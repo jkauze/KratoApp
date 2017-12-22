@@ -10,7 +10,7 @@ export class ContactPage {
 //  variable: number = this.pickUpTime
   lista: Array<any> = [
         {
-            titulo: "Kratinina",
+            titulo: "el medicamento (ingresalo)",
             hora: "4",
         }
     ]
@@ -26,25 +26,23 @@ export class ContactPage {
       inputs: [
         {
           name: 'Medicina',
-          placeholder: 'Medicina'
+          placeholder: 'Nombre Medicamento'
         },
         {
             name: 'HoraInicio',
-            placeholder: 'HoraInicio'
+            placeholder: 'Hora primera toma (horario militar)'
         }
       ],
       buttons: [
         {
           text: 'Cancelar',
           handler: dato => {
-            console.log('Cancel clicked');
             this.storage.clear();
           }
         },
         {
           text: 'Seleccionar',
           handler: dato => {
-            console.log(dato);
           this.storage.set('Medicamento',dato );
         
           }
@@ -54,14 +52,21 @@ export class ContactPage {
     recordador.present();
   }
 
+//     Funcion para senalar la proxima toma del medicamente segun tu hora actual 
+//     Ejemplo:
+//     hora inicio del medicamente: 13 (Hora militar)
+//     hora actual: 12
+//     hora a senalar la proxima toma: 17
+//     (Caso 2)
+//     hora inicio del medicamente: 13 (Hora militar)
+//     hora actual: 18
+//     hora a senalar la proxima toma: 21
   Recordarme(){
-      
     var hora_actual = new Date().getHours();
     this.storage.get('Medicamento').then((dato) => {
         var hora_inicial = dato.HoraInicio;
         hora_inicial = +hora_inicial;
         var proxima_hora = hora_inicial + 4;
-        console.log(proxima_hora);
         if (proxima_hora > 23){
             var resta = proxima_hora - 24;
             proxima_hora = resta;
@@ -81,12 +86,12 @@ export class ContactPage {
         });
         recordador.present();
     });
-    
   }
+    
+//    Funcion para agregar el nombre de la medicina a recordar en el Kratox (Kratox: es el recordador de la app)
   Agregar(){
       this.storage.get('Medicamento').then((dato) => {
           this.storage.set('horario', dato.HoraInicio);
-          //console.log(dato.HoraInicio);
           this.lista.pop();
           this.lista.push({
               titulo: dato.Medicina,
@@ -94,4 +99,14 @@ export class ContactPage {
           });
       });
   }
+    
+//    Funcion de informacion sobre el uso de Kratox
+  MostrarInfo() {
+    let alert = this.alertCtrl.create({
+      title: 'Informaciones',
+      subTitle: 'Para usar kratox primero debes seleccionar el medicamento a recordar con el nombre y la hora de inicio (HORA MILITAR de 24 horas tomando el 00), luego agregarlo al kratox y para recordar la hora ',
+      buttons: ['Entendido']
+    });
+    alert.present();
+  }  
 }
